@@ -1,0 +1,51 @@
+<html>
+<header> 
+
+<script type = "text/javascript">
+   //I used Audio Class to play the sound when a user clicks on Play Button
+    var audio = new Audio();
+    var s;
+   function tts() 
+   {
+      // Get the text entered by the user 
+      var str = document.getElementById("ttstxt").value;
+      // Call the translate.google.com API by appending the text at the end and get the result in variable s 
+      s ='http://translate.google.com/translate_tts?ie=utf-8&client=tw-ob&tl=en&q=\" ' + str;
+      //set the source of audio to s, so that it can play the audio
+      audio.src = s;
+      //Make the play and download button visible
+      document.getElementById('container').style.visibility="visible";
+      document.getElementById('container1').style.visibility="visible";
+   }
+   function Play(){
+      // play the audio
+        audio.play();
+      }
+   function Download(){
+      //creating an element a for redirecting the user to the audio file where they can download the audio 
+      var a = document.createElement('a');  
+      a.href = s;
+      window.location.assign(a.href);
+      }
+      
+</script>
+
+</header>
+<body>
+
+      <p>Enter the text to use Google TTS API</p>      
+      <form>
+         <input id="ttstxt" type="text" name="ttstxt"><br>
+         <input type = "button" onclick = "tts()" value = "Click Here">
+      </form>      
+      <!-- Initialize this container(Play()) with visibility hidden -->
+      <div id='container' style="visibility:hidden">
+        <button id='button1' onclick="Play()">Play</button>
+      </div>
+      <!-- Initialize this container(Download()) with visibility hidden-->
+      <div id='container1' style="visibility:hidden">
+         <button id='button2' onclick="Download()">Download</button>
+       </div>
+       
+</body>
+</html>
